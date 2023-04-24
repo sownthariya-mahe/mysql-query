@@ -1,0 +1,196 @@
+							Coding Aggregation
+
+
+11.Display the list of employees who have joined the company before 30th june 80 or after 31 st dec 80
+mysql> SELECT * FROM emp WHERE hire_date between '1980-12-31' and '1996-10-30';
++--------+----------+-------------+---------+---------+------------+---------------+------------+
+| emp_id | emp_name | designation | dept_no | salary  | new_salary | triple_salary | hire_date  |
++--------+----------+-------------+---------+---------+------------+---------------+------------+
+|   1001 | dharnesh    | clerk       |      10 | 4000.00 |    4500.00 |          NULL | 1981-08-30 |
+|   1002 | vimal    | salesman    |      20 | 3000.00 |    3500.00 |          NULL | 1981-10-15 |
+|   1003 | arun     | clerk       |      30 | 2000.00 |    2500.00 |          NULL | 1985-10-20 |
+|   1004 | anand    | salesman    |      20 | 4100.00 |    4500.00 |          NULL | 1990-05-25 |
+|   1007 | surya   | clerk       |      10 | 5500.00 |    6000.00 |          NULL | 1990-11-20 |
++--------+----------+-------------+---------+---------+------------+---------------+------------+
+12.Display the name of the current user
+mysql> select user();
++----------------+
+| user()         |
++----------------+
+| root@localhost |
++----------------+
+13.Display the names of employees working in department number 10 or 20 and working as clerks , salesman or analyst
+mysql> select * from emp where (dept_no = 10 OR dept_no = 20) and (designation = 'Clerk' OR designation = 'Salesman' OR designation = 'Analyst');
++--------+-----------+-------------+---------+---------+------------+---------------+------------+
+| emp_id | emp_name  | designation | dept_no | salary  | new_salary | triple_salary | hire_date  |
++--------+-----------+-------------+---------+---------+------------+---------------+------------+
+|   1001 | dharnesh     | clerk       |      10 | 4000.00 |    4500.00 |          NULL | 1981-08-30 |
+|   1002 | vimal     | salesman    |      20 | 3000.00 |    3500.00 |          NULL | 1981-10-15 |
+|   1004 | anand     | salesman    |      20 | 4100.00 |    4500.00 |          NULL | 1990-05-25 |
+|   1005 | kumar | analyst     |      10 | 5000.00 |    5500.00 |          NULL | 1997-11-20 |
+|   1006 | jerald  | clerk       |      10 | 5500.00 |    6000.00 |          NULL | 1996-11-20 |
+|   1007 | surya    | clerk       |      10 | 5500.00 |    6000.00 |          NULL | 1990-11-20 |
++--------+-----------+-------------+---------+---------+------------+---------------+------------+
+14.Display the names of employees whose name starts with alphabet “S”
+mysql> select * from emp where emp_name like 's%';
++--------+-----------+-------------+---------+---------+------------+---------------+------------+
+| emp_id | emp_name  | designation | dept_no | salary  | new_salary | triple_salary | hire_date  |
++--------+-----------+-------------+---------+---------+------------+---------------+------------+
+|   1005 | kumar | analyst     |      10 | 5000.00 |    5500.00 |          NULL | 1997-11-20 |
+|   1008 | santhosh  | clerk       |      10 | 5500.00 |    6000.00 |          NULL | 1990-06-20 |
++--------+-----------+-------------+---------+---------+------------+---------------+------------+
+
+15.Display employee name from employees whose name ends with alphabet M
+mysql> select * from emp where emp_name like 'm%';
++--------+----------+-------------+---------+---------+------------+---------------+------------+
+| emp_id | emp_name | designation | dept_no | salary  | new_salary | triple_salary | hire_date  |
++--------+----------+-------------+---------+---------+------------+---------------+------------+
+|   1001 | dharnesh    | clerk       |      10 | 4000.00 |    4500.00 |          NULL | 1981-08-30 |
+|   1006 | jerald | clerk       |      10 | 5500.00 |    6000.00 |          NULL | 1996-11-20 |
++--------+----------+-------------+---------+---------+------------+---------------+------------+
+
+16.Display the names of employees whose names have second alphabet A in their names
+mysql> select * from emp where emp_name like '_a%';
++--------+----------+-------------+---------+---------+------------+---------------+------------+
+| emp_id | emp_name | designation | dept_no | salary  | new_salary | triple_salary | hire_date  |
++--------+----------+-------------+---------+---------+------------+---------------+------------+
+|   1001 | dharnesh    | clerk       |      10 | 4000.00 |    4500.00 |          NULL | 1981-08-30 |
+|   1004 | anand    | salesman    |      20 | 4100.00 |    4500.00 |          NULL | 1990-05-25 |
+|   1006 | jerald | clerk       |      10 | 5500.00 |    6000.00 |          NULL | 1996-11-20 |
+|   1008 | santhosh | clerk       |      10 | 5500.00 |    6000.00 |          NULL | 1990-06-20 |
++--------+----------+-------------+---------+---------+------------+---------------+------------+
+
+17.Display the names of all tables from the current user
+mysql> show tables;
++------------------+
+| Tables_in_manodb |
++------------------+
+| customer         |
+| emp              |
+| emptable         |
+| marks            |
+| order_details   
+| student_profile  |
++------------------+
+18.Display the unique jobs in emp table
+mysql> select distinct designation from emp;
++-------------+
+| designation |
++-------------+
+| clerk       |
+| salesman    |
+| analyst     |
++-------------+
+
+19.Display the names of employees who are not working as SALESMAN or CLERK or ANALYST
+mysql>  select * from emp where designation not like 'salesman' or 'clerk' or 'analyst';
++--------+-----------+-------------+---------+---------+------------+---------------+------------+
+| emp_id | emp_name  | designation | dept_no | salary  | new_salary | triple_salary | hire_date  |
++--------+-----------+-------------+---------+---------+------------+---------------+------------+
+|   1009 | sandy     | maintenance |      25 | 6000.00 |    6500.00 |      18000.00 | 1998-12-19 |
++--------+-----------+-------------+---------+---------+------------+---------------+------------+
+
+20.Display the names and salary of employees in descending order of salary.
+mysql> select emp_name, salary from emp order by salary desc;
++-----------+---------+
+| emp_name  | salary  |
++-----------+---------+
+| jerald  | 5500.00 |
+| surya    | 5500.00 |
+| santhosh  | 5500.00 |
+| kumar | 5000.00 |
+| anand     | 4100.00 |
+| dharnesh     | 4000.00 |
+| vimal     | 3000.00 |
+| arun      | 2000.00 |
++-----------+---------+
+
+21.Display the names,job,salary and increased by 15% labbel the column new salary.
+mysql> select emp_name, designation, salary, salary*1.15 AS "New Salary" from emp;
++-----------+-------------+---------+------------+
+| emp_name  | designation | salary  | New Salary |
++-----------+-------------+---------+------------+
+| dharnesh     | clerk       | 4000.00 |    4600.00 |
+| vimal     | salesman    | 3000.00 |    3450.00 |
+| arun      | clerk       | 2000.00 |    2300.00 |
+| anand     | salesman    | 4100.00 |    4715.00 |
+| kumar | analyst     | 5000.00 |    5750.00 |
+| jerald  | clerk       | 5500.00 |    6325.00 |
+| surya    | clerk       | 5500.00 |    6325.00 |
+| santhosh  | clerk       | 5500.00 |    6325.00 |
++-----------+-------------+---------+------------+
+22.Display the name of the employees whose name contains 'L'.
+mysql> SELECT * FROM emp WHERE emp_name LIKE '%L';
++--------+----------+-------------+---------+---------+------------+---------------+------------+
+| emp_id | emp_name | designation | dept_no | salary  | new_salary | triple_salary | hire_date  |
++--------+----------+-------------+---------+---------+------------+---------------+------------+
+|   1002 | vimal    | salesman    |      20 | 3000.00 |    3500.00 |          NULL | 1981-10-15 |
++--------+----------+-------------+---------+---------+------------+---------------+------------+
+
+23..Display the name of the employees whose name contain 'A' as 4th character.
+mysql> select * from emp where emp_name like '___a%';
++--------+-----------+-------------+---------+---------+------------+---------------+------------+
+| emp_id | emp_name  | designation | dept_no | salary  | new_salary | triple_salary | hire_date  |
++--------+-----------+-------------+---------+---------+------------+---------------+------------+
+|   1002 | vimal     | salesman    |      20 | 3000.00 |    3500.00 |          NULL | 1981-10-15 |
+|   1005 | kumar | analyst     |      10 | 5000.00 |    5500.00 |          NULL | 1997-11-20 |
++--------+-----------+-------------+---------+---------+------------+---------------+------------+
+25.Display the name,job and salary of the employees whose salary is not in the range of 2000 and 3000.
+mysql> select emp_name, designation, salary from emp where salary not between 2000 and 3000;
++-----------+-------------+---------+
+| emp_name  | designation | salary  |
++-----------+-------------+---------+
+| dharnesh     | clerk       | 4000.00 |
+| anand     | salesman    | 4100.00 |
+| kumar | analyst     | 5000.00 |
+| jerald  | clerk       | 5500.00 |
+| surya    | clerk       | 5500.00 |
+| santhosh  | clerk       | 5500.00 |
++-----------+-------------+---------+
+27. Display the name and hiredate of the employees who have joined in the year '81'.
+mysql> select emp_name, hire_date from emp where hire_date between '1981-01-01' and '1996-12-31';
++----------+------------+
+| emp_name | hire_date  |
++----------+------------+
+| dharnesh    | 1981-08-30 |
+| vimal    | 1981-10-15 |
+| arun     | 1985-10-20 |
+| anand    | 1990-05-25 |
+| jerald | 1996-11-20 |
+| surya   | 1990-11-20 |
+| santhosh | 1990-06-20 |
++----------+------------+
+28. Display the name and hiredate of the employees first half of year in '81'.
+mysql> SELECT emp_name, hire_date FROM emp WHERE hire_date BETWEEN '1981-01-01' AND '1990-06-30';
++----------+------------+
+| emp_name | hire_date  |
++----------+------------+
+| dharnesh    | 1981-08-30 |
+| vimal    | 1981-10-15 |
+| arun     | 1985-10-20 |
+| anand    | 1990-05-25 |
+| santhosh | 1990-06-20 |
++----------+------------+
+29. Display the following output ename earns sal but wants three times salary
+
+Example : KING earns 5000 but wants 15000
+mysql> select concat(emp_name, ' earns ', salary, ' but wants',triple_salary) AS output from emp;
++-------------------------------------------+
+| output                                    |
++-------------------------------------------+
+| dharnesh earns 4000.00 but wants12000.00     |
+| vimal earns 3000.00 but wants9000.00      |
+| arun earns 2000.00 but wants6000.00       |
+| anand earns 4100.00 but wants12300.00     |
+| kumar earns 5000.00 but wants15000.00 |
+| jerald earns 5500.00 but wants16500.00  |
+| surya earns 5500.00 but wants16500.00    |
+| santhosh earns 5500.00 but wants16500.00  |
++-------------------------------------------+
+30. Display the details of the employees who have joined in the month of 'MAY'
+mysql> select * from emp where hire_date like '19__-05-%';
++--------+----------+-------------+---------+---------+------------+---------------+------------+
+| emp_id | emp_name | designation | dept_no | salary  | new_salary | triple_salary | hire_date  |
++--------+----------+-------------+---------+---------+------------+---------------+------------+
+|   1004 | anand    | salesman    |      20 | 4100.00 |    4500.00 |          NULL | 1990-05-25 |
++--------+----------+-------------+---------+---------+------------+---------------+------------+

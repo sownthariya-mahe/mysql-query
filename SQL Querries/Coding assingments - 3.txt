@@ -1,0 +1,226 @@
+									CODING ASSIGNMENTS - 3
+
+
+1) Create the following tables
+
+a) studentprofile(rollno,name,dob,department,city)
+
+mysql> desc student_profile;
++-------------+----------+------+-----+---------+-------+
+| Field       | Type     | Null | Key | Default | Extra |
++-------------+----------+------+-----+---------+-------+
+| rollno      | int      | YES  |     | NULL    |       |
+| name        | char(20) | YES  |     | NULL    |       |
+| DateofBirth | date     | YES  |     | NULL    |       |
+| department  | char(30) | YES  |     | NULL    |       |
+| city        | char(20) | YES  |     | NULL    |       |
++-------------+----------+------+-----+---------+-------+
+
+b) marks (rollno,name,mark1,mark2)
+mysql> desc marks;
++--------+----------+------+-----+---------+-------+
+| Field  | Type     | Null | Key | Default | Extra |
++--------+----------+------+-----+---------+-------+
+| rollno | int      | YES  |     | NULL    |       |
+| name   | char(20) | YES  |     | NULL    |       |
+| mark1  | int      | YES  |     | NULL    |       |
+| mark2  | int      | YES  |     | NULL    |       |
++--------+----------+------+-----+---------+-------+
+
+2) insert 5 different records to the above tables.
+
+select * from student_profile;
++--------+---------+-------------+------------------+-------------+
+| rollno | name    | DateofBirth | department       | city        |
++--------+---------+-------------+------------------+-------------+
+|  10001 | dharnesh   | 1997-08-30  | computer science | sulur       |
+|  10002 | Sathish | 1998-09-13  | computer science | peelamedu   |
+|  10003 | Devi    | 1999-02-23  | BBA              | RSpuram     |
+|  10004 | ajai   | 1999-02-16  | MCA              | ukkadam     |
+|  10005 | arun    | 1997-12-12  | automob          | sulurpirivu |
+|  10006 | harish  | 1997-12-24  | bsc it           | papampatti  |
++--------+---------+-------------+------------------+-------------+
+
+mysql> select * from marks;
++--------+-----------+-------+-------+
+| rollno | name      | mark1 | mark2 |
++--------+-----------+-------+-------+
+|  10001 | ajai     |    50 |    35 |
+|  10003 | siva |    35 |    35 |
+|  10004 | harish    |    60 |    58 |
+|  10005 | arun      |    70 |    90 |
+|  10006 | dharnesh     |    92 |    95 |
++--------+-----------+-------+-------+
+
+3) add a column total to marks table.
+mysql> select *from marks;
++--------+-----------+-------+-------+-------+
+| rollno | name      | mark1 | mark2 | total |
++--------+-----------+-------+-------+-------+
+|  10001 | ajai     |    50 |    35 |  NULL |
+|  10003 | siva |    35 |    35 |  NULL |
+|  10004 | harish    |    60 |    58 |  NULL |
+|  10005 | arun      |    70 |    90 |  NULL |
+|  10006 | dharnesh     |    92 |    95 |  NULL |
++--------+-----------+-------+-------+-------+
+
+4) change the column name dob to dateofbirth.
+
+mysql> alter table student_profile change dob DateOfBirth date;
+Query OK, 0 rows affected (0.05 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+mysql> select *from student_profile;
++--------+---------+-------------+------------------+-------------+
+| rollno | name    | DateOfBirth | department       | city        |
++--------+---------+-------------+------------------+-------------+
+|  10001 | dharnesh   | 1997-08-30  | computer science | sulur       |
+|  10002 | Sathish | 1998-09-13  | computer science | peelamedu   |
+|  10003 | Devi    | 1999-02-23  | BBA              | RSpuram     |
+|  10004 | ajai   | 1999-02-16  | MCA              | ukkadam     |
+|  10005 | arun    | 1997-12-12  | automob          | sulurpirivu |
+|  10006 | harish  | 1997-12-24  | bsc it           | papampatti  |
++--------+---------+-------------+------------------+-------------+
+
+5) display the structure of the above tables.
+mysql> desc student_profile;
++-------------+----------+------+-----+---------+-------+
+| Field       | Type     | Null | Key | Default | Extra |
++-------------+----------+------+-----+---------+-------+
+| rollno      | int      | YES  |     | NULL    |       |
+| name        | char(20) | YES  |     | NULL    |       |
+| DateofBirth | date     | YES  |     | NULL    |       |
+| department  | char(30) | YES  |     | NULL    |       |
+| city        | char(20) | YES  |     | NULL    |       |
++-------------+----------+------+-----+---------+-------+
+mysql> desc marks;
++--------+----------+------+-----+---------+-------+
+| Field  | Type     | Null | Key | Default | Extra |
++--------+----------+------+-----+---------+-------+
+| rollno | int      | YES  |     | NULL    |       |
+| name   | char(20) | YES  |     | NULL    |       |
+| mark1  | int      | YES  |     | NULL    |       |
+| mark2  | int      | YES  |     | NULL    |       |
++--------+----------+------+-----+---------+-------+
+6) List the tables which you have created.
+mysql> show tables;
++------------------+
+| Tables_in_manodb |
++------------------+
+| marks            |
+| student_profile  |
++------------------+
+
+7) Calculate total marks for each student and update in marks table.
+mysql> update marks set total=mark1+mark2;
+Query OK, 5 rows affected (0.43 sec)
+Rows matched: 5  Changed: 5  Warnings: 0
+
+mysql> select *from marks;
++--------+-----------+-------+-------+-------+
+| rollno | name      | mark1 | mark2 | total |
++--------+-----------+-------+-------+-------+
+|  10001 | ajai     |    50 |    35 |    85 |
+|  10003 | siva |    35 |    35 |    70 |
+|  10004 | harish    |    60 |    58 |   118 |
+|  10005 | arun      |    70 |    90 |   160 |
+|  10006 | dharnesh     |    92 |    95 |   187 |
++--------+-----------+-------+-------+-------+
+8) remove the 4 th rollno from studentprofile  table.
+mysql> delete from marks where rollno=10004;
+Query OK, 1 row affected (0.04 sec)
+
+mysql> select *from marks;
++--------+-----------+-------+-------+-------+
+| rollno | name      | mark1 | mark2 | total |
++--------+-----------+-------+-------+-------+
+|  10001 | ajai     |    50 |    35 |    85 |
+|  10003 | siva |    35 |    35 |    70 |
+|  10005 | arun      |    70 |    90 |   160 |
+|  10006 | dharnesh     |    92 |    95 |   187 |
++--------+-----------+-------+-------+-------+
+9) Display all the records of both the tables.
+mysql> select *from marks;
++--------+-----------+-------+-------+-------+
+| rollno | name      | mark1 | mark2 | total |
++--------+-----------+-------+-------+-------+
+|  10001 | ajai     |    50 |    35 |    85 |
+|  10003 | siva |    35 |    35 |    70 |
+|  10005 | arun      |    70 |    90 |   160 |
+|  10006 | dharnesh     |    92 |    95 |   187 |
++--------+-----------+-------+-------+-------+
+4 rows in set (0.00 sec)
+
+mysql> select *from student_profile;
++--------+---------+-------------+------------------+-------------+
+| rollno | name    | DateOfBirth | department       | city        |
++--------+---------+-------------+------------------+-------------+
+|  10001 | dharnesh   | 1997-08-30  | computer science | sulur       |
+|  10002 | Sathish | 1998-09-13  | computer science | peelamedu   |
+|  10003 | Devi    | 1999-02-23  | BBA              | RSpuram     |
+|  10004 | ajai   | 1999-02-16  | MCA              | ukkadam     |
+|  10005 | arun    | 1997-12-12  | automob          | sulurpirivu |
+|  10006 | harish  | 1997-12-24  | bsc it           | papampatti  |
++--------+---------+-------------+------------------+-------------+
+11) add two more columns average and grade
+mysql> alter table marks add average double(4,2);
+mysql> alter table marks add grade varchar(20);
+mysql> select *from marks;
++--------+-----------+-------+-------+-------+---------+-------+
+| rollno | name      | mark1 | mark2 | total | average | grade |
++--------+-----------+-------+-------+-------+---------+-------+
+|  10001 | ajai     |    50 |    35 |    85 |    NULL | NULL  |
+|  10003 | siva |    35 |    35 |    70 |    NULL | NULL  |
+|  10005 | arun      |    70 |    90 |   160 |    NULL | NULL  |
+|  10006 | dharnesh     |    92 |    95 |   187 |    NULL | NULL  |
++--------+-----------+-------+-------+-------+---------+-------+
+12) calculate the average for all the students.
+mysql> update marks set average=total/4;
+mysql> select *from marks;
++--------+-----------+-------+-------+-------+---------+--update-----+
+| rollno | name      | mark1 | mark2 | total | average | grade |
++--------+-----------+-------+-------+-------+---------+-------+
+|  10001 | ajai     |    50 |    35 |    85 |   21.25 | NULL  |
+|  10003 | siva |    35 |    35 |    70 |   17.50 | NULL  |
+|  10005 | arun      |    70 |    90 |   160 |   40.00 | NULL  |
+|  10006 | dharnesh     |    92 |    95 |   187 |   46.75 | NULL  |
++--------+-----------+-------+-------+-------+---------+-------+
+
+13) Calculate the grade (if both the marks are above 40 then grade should be pass
+if less than 40 grade should be fail).
+mysql> update marks set grade='pass' where mark1>40 and mark2>40;
+Query OK, 2 rows affected (0.03 sec)
+Rows matched: 2  Changed: 2  Warnings: 0
+
+mysql> update marks set grade='fail' where mark1<40 and mark2<40;
+Query OK, 1 row affected (0.04 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from marks;
++--------+-----------+-------+-------+-------+---------+-------+
+| rollno | name      | mark1 | mark2 | total | average | grade |
++--------+-----------+-------+-------+-------+---------+-------+
+|  10001 | ajai     |    50 |    35 |    85 |   21.25 | fail  |
+|  10003 | siva |    35 |    35 |    70 |   17.50 | fail  |
+|  10005 | arun      |    70 |    90 |   160 |   40.00 | pass  |
+|  10006 | dharnesh     |    92 |    95 |   187 |   46.75 | pass  |
++--------+-----------+-------+-------+-------+---------+-------+
+
+14) Remove the column average .
+mysql>alter table marks drop average;
+mysql> select * from marks;
++--------+-----------+-------+-------+-------+---------+-------+
+| rollno | name      | mark1 | mark2 | total | grade |
++--------+-----------+-------+-------+-------+---------+-------+
+|  10001 | ajai     |    50 |    35 |    85 | fail  |
+|  10003 | siva |    35 |    35 |    70 | fail  |
+|  10005 | arun      |    70 |    90 |   160 |  pass  |
+|  10006 | dharnesh     |    92 |    95 |   187 | pass  |
++--------+-----------+-------+-------+-------+---------+-------+
+
+15) Remove all the records from the table.
+mysql>truncate marks;
+
+16) confirm your change
+
+mysql> select * from marks;
+Empty set (0.04 sec)

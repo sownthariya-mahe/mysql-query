@@ -1,0 +1,134 @@
+
+									CODING PRACTICE 1.2
+
+
+1) Anew player has joinded the tournament. write sql Query to add the following detAILS TO THE PLAYER TABLE
+
+
+insert into player values('Raj',26,120);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from player where name='Raj';
++------+------+-------+
+| name | age  | score |
++------+------+-------+
+| Raj  |   26 |   120 |
++------+------+-------+
+1 row in set (0.00 sec)
+
+
+
+2) 3 new players have joined the tournament
+
+ insert into player values('Ram',28,125),('Sharan',25,172),('Ravan',20,153);
+Query OK, 3 rows affected (0.00 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+select * from player where name in('ram','Sharan','Ravan');
++--------+------+-------+
+| name   | age  | score |
++--------+------+-------+
+| Ram    |   28 |   125 |
+| Sharan |   25 |   172 |
+| Ravan  |   20 |   153 |
++--------+------+-------+
+3 rows in set (0.00 sec)
+
+
+3)  get all details of players from player table
+
+select * from player where name in('ram','Suresh');
++--------+------+-------+
+| name   | age  | score |
++--------+------+-------+
+| Suresh |   21 |    70 |
+| Ram    |   28 |   125 |
++--------+------+-------+
+2 rows in set (0.00 sec)
+
+
+4) Update the age of "Shyam" to 30 in the player table.
+
+
+select * from player where name in('Shyam');
++-------+------+-------+
+| name  | age  | score |
++-------+------+-------+
+| Shyam |   30 |    25 |
++-------+------+-------+
+1 row in set (0.00 sec)
+
+
+5) Delete "David" from player table
+
+
+ delete from player where name=('David');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from player;
++--------+------+-------+
+| name   | age  | score |
++--------+------+-------+
+| Suresh |   21 |    70 |
+| Venkat |   21 |    43 |
+| Raj    |   26 |   120 |
+| Ram    |   28 |   125 |
+| Sharan |   25 |   172 |
+| Ravan  |   20 |   153 |
+| Shyam  |   30 |    25 |
++--------+------+-------+
+7 rows in set (0.00 sec)
+
+
+6) Name the coloumn as strike_rate. it value are decemial.
+
+ alter table player add Strike_rate float;
+Query OK, 0 rows affected (0.03 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc player;
++-------------+----------+------+-----+---------+-------+
+| Field       | Type     | Null | Key | Default | Extra |
++-------------+----------+------+-----+---------+-------+
+| name        | char(20) | YES  |     | NULL    |       |
+| age         | int      | YES  |     | NULL    |       |
+| score       | int      | YES  |     | NULL    |       |
+| Strike_rate | float    | YES  |     | NULL    |       |
++-------------+----------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+
+
+7) Get name,age of all players from player table.
+
+ select name,age from player;
++--------+------+
+| name   | age  |
++--------+------+
+| Suresh |   21 |
+| Venkat |   21 |
+| Raj    |   26 |
+| Ram    |   28 |
+| Sharan |   25 |
+| Ravan  |   20 |
+| Shyam  |   30 |
++--------+------+
+7 rows in set (0.00 sec)
+
+
+8) Rename the colunm name to full name to the player table.  
+
+ alter table player rename column name to full_name;
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc player;
++-------------+----------+------+-----+---------+-------+
+| Field       | Type     | Null | Key | Default | Extra |
++-------------+----------+------+-----+---------+-------+
+| full_name   | char(20) | YES  |     | NULL    |       |
+| age         | int      | YES  |     | NULL    |       |
+| score       | int      | YES  |     | NULL    |       |
+| Strike_rate | float    | YES  |     | NULL    |       |
++-------------+----------+------+-----+---------+-------+
+4 rows in set (0.00 sec)

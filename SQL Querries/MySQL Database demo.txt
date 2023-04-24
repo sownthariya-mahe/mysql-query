@@ -1,0 +1,142 @@
+TABLE1
+
+
+mysql> use studentsdb;
+Database changed
+mysql> create table mark_details(S_no int,name varchar(30),sub_name varchar(30),tamil_mark int,english_mark int,maths_mark int);
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> desc mark_details;
++--------------+-------------+------+-----+---------+-------+
+| Field        | Type        | Null | Key | Default | Extra |
++--------------+-------------+------+-----+---------+-------+
+| S_no         | int         | YES  |     | NULL    |       |
+| name         | varchar(30) | YES  |     | NULL    |       |
+| sub_name     | varchar(30) | YES  |     | NULL    |       |
+| tamil_mark   | int         | YES  |     | NULL    |       |
+| english_mark | int         | YES  |     | NULL    |       |
+| maths_mark   | int         | YES  |     | NULL    |       |
++--------------+-------------+------+-----+---------+-------+
+6 rows in set (0.01 sec)
+
+
+
+TABLE2
+
+
+mysql> create table car_garage(S_no int,car_brand varchar(30),no_of_bmw int,no_of_benz int,no_of_rollsroyce int,no_of_audi int,no_of_jaguar int);
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> desc car_garage;
++------------------+-------------+------+-----+---------+-------+
+| Field            | Type        | Null | Key | Default | Extra |
++------------------+-------------+------+-----+---------+-------+
+| S_no             | int         | YES  |     | NULL    |       |
+| car_brand        | varchar(30) | YES  |     | NULL    |       |
+| no_of_bmw        | int         | YES  |     | NULL    |       |
+| no_of_benz       | int         | YES  |     | NULL    |       |
+| no_of_rollsroyce | int         | YES  |     | NULL    |       |
+| no_of_audi       | int         | YES  |     | NULL    |       |
+| no_of_jaguar     | int         | YES  |     | NULL    |       |
++------------------+-------------+------+-----+---------+-------+
+7 rows in set (0.00 sec)
+
+
+
+TABLE1 ALTER
+
+mysql> alter table mark_details add science_mark int after english_mark;
+Query OK, 0 rows affected (0.01 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+mysql> desc mark_details;
++--------------+-------------+------+-----+---------+-------+
+| Field        | Type        | Null | Key | Default | Extra |
++--------------+-------------+------+-----+---------+-------+
+| S_no         | int         | YES  |     | NULL    |       |
+| name         | varchar(30) | YES  |     | NULL    |       |
+| sub_name     | varchar(30) | YES  |     | NULL    |       |
+| tamil_mark   | int         | YES  |     | NULL    |       |
+| english_mark | int         | YES  |     | NULL    |       |
+| science_mark | int         | YES  |     | NULL    |       |
+| maths_mark   | int         | YES  |     | NULL    |       |
++--------------+-------------+------+-----+---------+-------+
+7 rows in set (0.00 sec)
+
+
+TABLE2 ALTER
+
+mysql> alter table car_garage add no_of_ford int after no_of_benz;
+Query OK, 0 rows affected (0.01 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc car_garage;
++------------------+-------------+------+-----+---------+-------+
+| Field            | Type        | Null | Key | Default | Extra |
++------------------+-------------+------+-----+---------+-------+
+| S_no             | int         | YES  |     | NULL    |       |
+| car_brand        | varchar(30) | YES  |     | NULL    |       |
+| no_of_bmw        | int         | YES  |     | NULL    |       |
+| no_of_benz       | int         | YES  |     | NULL    |       |
+| no_of_ford       | int         | YES  |     | NULL    |       |
+| no_of_rollsroyce | int         | YES  |     | NULL    |       |
+| no_of_audi       | int         | YES  |     | NULL    |       |
+| no_of_jaguar     | int         | YES  |     | NULL    |       |
++------------------+-------------+------+-----+---------+-------+
+8 rows in set (0.00 sec)
+
+SHOW TABLES IN DB
+
+mysql> show tables;
++----------------------+
+| Tables_in_studentsdb |
++----------------------+
+| car_garage           |
+| mark_details         |
++----------------------+
+2 rows in set (0.01 sec)
+
+TABLE 1 ALTER COLOUMN NAME
+
+mysql> alter table mark_details change french_name french_mark int;
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc mark_details;
++--------------+-------------+------+-----+---------+-------+
+| Field        | Type        | Null | Key | Default | Extra |
++--------------+-------------+------+-----+---------+-------+
+| S_no         | int         | YES  |     | NULL    |       |
+| name         | varchar(30) | YES  |     | NULL    |       |
+| sub_name     | varchar(30) | YES  |     | NULL    |       |
+| tamil_mark   | int         | YES  |     | NULL    |       |
+| english_mark | int         | YES  |     | NULL    |       |
+| science_mark | int         | YES  |     | NULL    |       |
+| french_mark  | int         | YES  |     | NULL    |       |
++--------------+-------------+------+-----+---------+-------+
+7 rows in set (0.00 sec)
+
+
+
+TABLE 2 ALTER COLOUMN NAME
+
+
+mysql> alter table car_garage change no_of_audi no_of_toyota int;
+Query OK, 0 rows affected (0.01 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc car_garage;
++------------------+-------------+------+-----+---------+-------+
+| Field            | Type        | Null | Key | Default | Extra |
++------------------+-------------+------+-----+---------+-------+
+| S_no             | int         | YES  |     | NULL    |       |
+| car_brand        | varchar(30) | YES  |     | NULL    |       |
+| no_of_bmw        | int         | YES  |     | NULL    |       |
+| no_of_benz       | int         | YES  |     | NULL    |       |
+| no_of_ford       | int         | YES  |     | NULL    |       |
+| no_of_rollsroyce | int         | YES  |     | NULL    |       |
+| no_of_toyota     | int         | YES  |     | NULL    |       |
+| no_of_jaguar     | int         | YES  |     | NULL    |       |
++------------------+-------------+------+-----+---------+-------+
+8 rows in set (0.00 sec)
+
+
